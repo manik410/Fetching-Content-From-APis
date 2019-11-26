@@ -1,0 +1,82 @@
+	<!DOCTYPE html>
+		<html>
+		<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+			<title>Token Based Api</title>
+			<style>
+				.container
+				{
+					margin:0;
+					padding: 0;
+					width: 100%;
+				}
+				.top
+				{
+					height: 50px;
+					background: #cb202d;
+				}
+				h2
+				{
+					margin-top: 0px !important;
+
+				}
+				.d
+				{
+					position: relative;
+					border:2px solid white;
+				}
+				td
+				{
+					color:red;
+					font-family: Calibri;
+					font-size: 20px;
+					text-align: center;
+				}
+			</style>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<script>
+				$(document).ready(function()
+				{
+					$.ajax({
+	  					method: "GET",
+	  					crossDomain: true,
+	  					url: "https://developers.zomato.com/api/v2.1/categories",
+	  					dataType: "json",
+	  					async: true,
+	  					headers: {
+	  					
+	    				"user-key": "e6421fb56fcef483eef29089bb26bf8d"},
+	  					success: function(data) {
+	  					serverResult=data;
+	  					$("#div").html("");
+	  					content="<table class='table table-hover table-condensed d' style='width:50%'>";
+	  					for(a in data.categories)
+	  					{
+	  						content+="<tr><td>"+data.categories[a].categories.id+"</td> <td> "+data.categories[a].categories.name+"</td></tr>";
+	  					}
+	  					content+="</table>";
+	  					$("#div").append(content);
+	  					},
+	  					error: function() {
+	    				infoContent = "<div>Sorry, data is not coming through. Refresh and try again.</div>";
+	  					}
+			});
+			});
+			</script>
+		</head>
+		<body>
+			<div class="container">	
+			<div class="top">		
+				<h2 class="text-primary text-center" style="font-family: Calibri;padding:10px;color:white;">Zomato Categories Shown by - Manik Jindal </h2>
+			</div>
+			<div class="div1">
+				<img src="img/zomato.jpg" style="width: 100%;height:700px;position: absolute;">
+				<br/><br/><br/><br/><br/>
+				<div id="div" style="height: 700px;">
+				</div>
+			</div>
+		</body>
+	</html>
